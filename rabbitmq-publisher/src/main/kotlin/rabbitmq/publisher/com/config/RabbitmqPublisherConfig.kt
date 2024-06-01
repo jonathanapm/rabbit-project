@@ -22,7 +22,7 @@ class RabbitmqPublisherConfig(
     @PostConstruct
     fun createRabbitElements() {
         val rabbitAdmin = RabbitAdmin(connectionFactory)
-        createFanoutExchange(rabbitAdmin)
+        createFanoutExchange(rabbitAdmin) //you can create differents exchange, like direct and topic
         createFirstQueue(rabbitAdmin)
         createSecondQueue(rabbitAdmin)
         createJsonQueue(rabbitAdmin)
@@ -50,7 +50,7 @@ class RabbitmqPublisherConfig(
                 QueueDefinition.JSON_QUEUE,
                 Binding.DestinationType.QUEUE,
                 QueueDefinition.FANNOUT_EXCHANGE,
-                "", //is not necessary
+                "", // routingKey is not necessary for Fannout Exchange
                 null
         )
 
